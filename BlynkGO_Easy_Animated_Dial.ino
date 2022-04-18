@@ -1,31 +1,24 @@
-/******************************************************
- * กด Ctrl+K เพื่อเปิด folder ของโปรเจคขึ้นมา
- *   และให้นำไฟล์  dial.jpg, dial.png, good_cat.png
- *   ไปวางไว้ที่ SD card แล้วเสียบ SD card
- *   ที่ BlynkGO Board 3.5นิ้ว
- * 
- ******************************************************/
-
 #include <BlynkGOv2.h>
 
 FONT_DECLARE(NotoSansBI_36);
+IMG_DECLARE(img_dial);
+IMG_DECLARE(img_good_cat);
 
-GImage background("SD://good_cat.png");
+GImage background(img_good_cat);
 GCircle cir;
-  GImage dial(cir);
+  GImage dial(img_dial, cir);
     GLine  pin(dial);
     GLabel txt(dial);
 
 void setup() {
   Serial.begin(115200); Serial.println();
 
-//  background.position(0,0);
+  background.align_center();
   cir.radius(119);
   cir.color(TFT_BLACK);
   cir.opa(200);                 // โปร่งใส 255
   cir.clickable(true);          // ให้สัมผัสได้
   cir.dragable(true);           // ให้ลากไปมาได้
-    dial = "SD://dial.png";     // "SD://dial.jpg" 
     dial.align_center();
       txt.font(NotoSansBI_36);
       pin.thickness(4, TFT_RED);
